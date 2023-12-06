@@ -1,10 +1,12 @@
 plugins {
+    application
     id("java")
 }
 
 group = "hexlet.code"
 version = "1.0-SNAPSHOT"
 
+application { mainClass.set("hexlet.code.App") }
 repositories {
     mavenCentral()
 }
@@ -16,4 +18,8 @@ dependencies {
 
 tasks.test {
     useJUnitPlatform()
+}
+
+tasks.compileJava {
+    options.release = 20
 }
