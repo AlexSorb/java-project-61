@@ -1,6 +1,5 @@
 package hexlet.code;
 
-import java.io.IOException;
 import java.util.Scanner;
 public class Cli {
     public static void greeting() {
