@@ -1,79 +1,42 @@
 package hexlet.code.games;
 
-import java.util.Scanner;
+import hexlet.code.Engine;
 
-public class Even {
+public class Even implements Game {
 
-    private int countCorrectAnswers; // Счетчик правельных ответов
+    private int currentNumber;
+    private String rightAnswer;
 
-    private int currentNumber; // Текущее число
-    private String correctAnswer; // Текущий правильный ответ
-    private String userName;
 
     public Even() {
-        this.countCorrectAnswers = 0;
-        this.currentNumber = randValue();
-        this.correctAnswer = isEven(currentNumber) ? "yes" : "no";
-        this.userName = "";
+        this.currentNumber = Engine.randomIntValue();
+        this.rightAnswer = isEven(currentNumber) ? "yes" : "no";
     }
 
-    public void start() {
-
-        System.out.println("Welcome to the Brain Games!");
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("May I have your name ? ");
-        String uName = "";
-        uName = scanner.next();
-        System.out.println("Hello, " + uName);
-        this.userName = uName;
-
-
-        System.out.println("Answer 'yes' if the number is even, otherwise answer 'no'.");
-
-        while (this.countCorrectAnswers < 3) {
-            System.out.println("Question: " + this.currentNumber);
-            System.out.print("Your answer: ");
-            String yourAnswer = getUserAnswer();
-
-            if (this.correctAnswer.equalsIgnoreCase(yourAnswer)) {
-                System.out.println("Correct!");
-                currentNumber = randValue();
-                correctAnswer = isEven(currentNumber) ? "yes" : "no";
-                countCorrectAnswers++;
-            } else {
-                System.out.println("'" + yourAnswer + "' is wrong answer ;(. Correct answer was '"
-                        + this.correctAnswer + "'.");
-                countCorrectAnswers = 0;
-                currentNumber = randValue();
-            }
-        }
-        System.out.println("Congratulations, " + this.userName);
-        scanner.close();
+    public String getGameRules() {
+        return "Answer 'yes' if the number is even, otherwise answer 'no'.";
+    }
+    public String getQuestion() {
+        return Integer.toString(currentNumber);
+    }
+    public String getRightAnswer() {
+        return rightAnswer;
     }
 
-
-
-    // Выдаем случайное число от LOWER_BOUND до UPPER_BOUND
-    private static int randValue() {
-        final int upperBound = 25;
-        final int lowerBound = 1;
-        return (int) (Math.random() * (upperBound - lowerBound)) + lowerBound;
+    public boolean isRightAnswer(String userAnswer) {
+        return userAnswer.equalsIgnoreCase(rightAnswer);
     }
 
-    // Проверка на четность
+    public void changeQuestion() {
+        currentNumber = Engine.randomIntValue();
+        rightAnswer = isEven(currentNumber) ? "yes" : "no";
+    }
+
     private boolean isEven(int num) {
         if (num < 0) {
             return false;
         }
         return num % 2 == 0;
-    }
-
-    // Получить ответ от пользователя
-    private String getUserAnswer() {
-        Scanner basicInputStream = new Scanner(System.in);
-        String userAnswer;
-        userAnswer = basicInputStream.next();
-        return userAnswer;
     }
 
 }
