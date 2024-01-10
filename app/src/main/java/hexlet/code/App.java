@@ -30,6 +30,9 @@ public class App {
             case 4:
                 engine.start("GCD");
                 break;
+            case 5:
+                engine.start("Progression");
+                break;
             default:
                 System.out.println("Error1");
                 break;
@@ -43,6 +46,7 @@ public class App {
         System.out.println("2 - Even");
         System.out.println("3 - Calculator");
         System.out.println("4 - GCD");
+        System.out.println("5 - Progression");
         System.out.println("0 - Exit");
     }
 

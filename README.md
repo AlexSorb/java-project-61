@@ -10,3 +10,5 @@ Test [Even](https://asciinema.org/a/feHL24OCb8biy3Rr4uNoKOFwz)
 Test [Calculator](https://asciinema.org/a/waxfZ5e291S4DW0VTP9ThFIUm)
 
 Test [GCD](https://asciinema.org/a/iDqYlivdnvuQMjdwUd7w16TLz)
+
+Test [Progression](https://asciinema.org/a/AkIg1rpulTKCQ4hyDpWvJ1jRD)

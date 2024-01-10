@@ -1,10 +1,7 @@
 package hexlet.code;
 
 import java.util.Scanner;
-import hexlet.code.games.Calc;
-import hexlet.code.games.Even;
-import hexlet.code.games.GCD;
-import hexlet.code.games.Game;
+import hexlet.code.games.*;
 
 public class Engine {
     private String userName;
@@ -25,6 +22,8 @@ public class Engine {
                 break;
             case "GCD":
                 startGame(new GCD());
+            case "Progression":
+                startGame(new Progression());
             default:
                 break;
         }
@@ -52,7 +51,6 @@ public class Engine {
         System.out.print("May I have your name ? ");
         Scanner scanner = new Scanner(System.in);
         String uName = scanner.next();
-//        scanner.close();
         System.out.println("Hello, " + uName);
         this.userName = uName;
     }
@@ -60,7 +58,7 @@ public class Engine {
     private String getUserInput() {
         String userInput = "";
         Scanner inputStr = new Scanner(System.in);
-        userInput = inputStr.next();
+        userInput = inputStr.next().trim();
         return userInput;
     }
     private void winGame() {
