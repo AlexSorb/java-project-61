@@ -24,6 +24,8 @@ public class Engine {
                 startGame(new GCD());
             case "Progression":
                 startGame(new Progression());
+            case "Prime":
+                startGame(new Prime());
             default:
                 break;
         }

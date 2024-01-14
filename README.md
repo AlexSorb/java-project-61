@@ -18,3 +18,6 @@
 ## Игра "Арифметическая прогрессия"
 Ссылка на тестирование игры [Progression](https://asciinema.org/a/AkIg1rpulTKCQ4hyDpWvJ1jRD)
 
+## Игра "Простое ли число?"
+Ссылка на тестирование игры [Prime](https://asciinema.org/a/093hERSXj0lJPKx8y3NVufhrW)
+

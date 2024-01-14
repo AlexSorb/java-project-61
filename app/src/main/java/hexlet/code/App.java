@@ -33,6 +33,9 @@ public class App {
             case 5:
                 engine.start("Progression");
                 break;
+            case 6:
+                engine.start("Prime");
+                break;
             default:
                 System.out.println("Error1");
                 break;
@@ -47,6 +50,7 @@ public class App {
         System.out.println("3 - Calculator");
         System.out.println("4 - GCD");
         System.out.println("5 - Progression");
+        System.out.println("6 - Prime");
         System.out.println("0 - Exit");
     }
 
