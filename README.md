@@ -4,11 +4,17 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/cc8370b62c189c3a2174/maintainability)](https://codeclimate.com/github/AlexSorb/java-project-61/maintainability)
 
 
-### Сыллка на asciinema.org
-Test [Even](https://asciinema.org/a/feHL24OCb8biy3Rr4uNoKOFwz)
+# Сыллки на asciinema.org
 
-Test [Calculator](https://asciinema.org/a/waxfZ5e291S4DW0VTP9ThFIUm)
+## Игра: "Проверка на чётность"
+Ссылка на тестирование игры [Even](https://asciinema.org/a/feHL24OCb8biy3Rr4uNoKOFwz)
 
-Test [GCD](https://asciinema.org/a/iDqYlivdnvuQMjdwUd7w16TLz)
+## Игра: "Калькулятор"
+Ссылка на тестирование игры [Calculator](https://asciinema.org/a/waxfZ5e291S4DW0VTP9ThFIUm)
 
-Test [Progression](https://asciinema.org/a/AkIg1rpulTKCQ4hyDpWvJ1jRD)
+## Игра "НОД"
+Ссылка на тестирование игры [GCD](https://asciinema.org/a/iDqYlivdnvuQMjdwUd7w16TLz)
+
+## Игра "Арифметическая прогрессия"
+Ссылка на тестирование игры [Progression](https://asciinema.org/a/AkIg1rpulTKCQ4hyDpWvJ1jRD)
+
