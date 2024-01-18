@@ -1,3 +1,4 @@
+.gradle
 app/build/*
 app/!gradle/wrapper/gradle-wrapper.jar
 app/!**/src/main/**/build/

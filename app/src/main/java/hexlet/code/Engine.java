@@ -55,7 +55,7 @@ public class Engine {
         return userInput;
     }
     private void winGame() {
-        System.out.println("Congratulations, " + this.userName + " !");
+        System.out.println("Congratulations, " + this.userName + "!");
     }
     private void wrongAnswer(String userAnswer, String rightAnswer) {
         System.out.println("'" + userAnswer + "' is wrong answer ;(. Correct answer was '"
