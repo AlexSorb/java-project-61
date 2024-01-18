@@ -44,7 +44,7 @@ public class Engine {
         System.out.print("May I have your name ? ");
         Scanner scanner = new Scanner(System.in);
         String uName = scanner.next();
-        System.out.println("Hello, " + uName);
+        System.out.println("Hello, " + uName + "!");
         this.userName = uName;
     }
 
