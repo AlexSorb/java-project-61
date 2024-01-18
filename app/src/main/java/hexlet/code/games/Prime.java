@@ -2,7 +2,7 @@ package hexlet.code.games;
 
 import hexlet.code.Engine;
 
-public class Prime implements Game {
+public class Prime {
 
     int number;
     String rightAnswer;
@@ -31,9 +31,9 @@ public class Prime implements Game {
         this.rightAnswer = isPrimeNumber(this.number) ? "yes" : "no";
     }
 
-    private boolean isPrimeNumber(int number) {
-        for (int i = 2; i <= Math.sqrt(number); i++) {
-            if(number % i == 0) {
+    private boolean isPrimeNumber(int num) {
+        for (int i = 2; i <= Math.sqrt(num); i++) {
+            if (num % i == 0) {
                 return false;
             }
         }

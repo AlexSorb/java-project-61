@@ -2,7 +2,7 @@ package hexlet.code.games;
 
 import hexlet.code.Engine;
 
-public class Progression implements Game{
+public class Progression {
     int[] progression;
     int  positionOfWishingElement;
     int rightAnswer;
@@ -36,12 +36,14 @@ public class Progression implements Game{
     }
 
     public void changeQuestion() {
-        progression = new int[Engine.randomIntValue(5, 10)];
+        final int leftBorder = 5;
+        final int rightBorder = 10;
+        progression = new int[Engine.randomIntValue(leftBorder, rightBorder)];
         int start = Engine.randomIntValue();
-        int razmer = Engine.randomIntValue(4,7);
+        int sizeProgression = Engine.randomIntValue(leftBorder, rightBorder);
         progression[0] = start;
         for (int i = 1; i < progression.length; i++) {
-            progression[i] = progression[i-1] + razmer;
+            progression[i] = progression[i - 1] + sizeProgression;
         }
         positionOfWishingElement = Engine.randomIntValue(0, progression.length);
         this.rightAnswer = progression[positionOfWishingElement];

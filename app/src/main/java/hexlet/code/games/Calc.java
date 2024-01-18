@@ -1,7 +1,7 @@
 package hexlet.code.games;
 
 import hexlet.code.Engine;
-public class Calc implements Game {
+public class Calc  {
     private int leftArg;
     private int rightArg;
     private int rightAnswer;
