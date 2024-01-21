@@ -14,18 +14,42 @@ public class Calc  {
         changeQuestion();
     }
 
+    /**
+     * Method returns the game rule for the Calc game.
+     * @return game rule.
+     */
     public String getGameRules() {
         return "What is the result of the expression?";
     }
+
+    /**
+     * The method returns a question for the user.
+     * @return question for user.
+     */
     public String getQuestion() {
         return leftArg + " " + nameOfOperation + " " + rightArg;
     }
+
+    /**
+     * The method returns the correct answer.
+     * @return right answer
+     */
     public String getRightAnswer() {
         return Integer.toString(rightAnswer);
     }
+
+    /**
+     * The method returns true if the correct answer is given.
+     * @param userAnswer
+     * @return true if the answer is correct
+     */
     public boolean isRightAnswer(String userAnswer) {
         return Integer.parseInt(userAnswer)  == rightAnswer;
     }
+
+    /**
+     * The method sets new parameters for the game.
+     */
     public void changeQuestion() {
         this.leftArg = Engine.randomIntValue(1, 11);
         this.rightArg = Engine.randomIntValue(1, 11);
