@@ -51,9 +51,13 @@ public class Calc  {
      * The method sets new parameters for the game.
      */
     public void changeQuestion() {
-        this.leftArg = Engine.randomIntValue(1, 11);
-        this.rightArg = Engine.randomIntValue(1, 11);
-        int numberOfOperation = Engine.randomIntValue(1, 4);
+        final int leftBorder = 1;
+        final int rightBorder = 11;
+        final int leftBorderOfOperation = 1;
+        final int rightBorderOfOperation = 4;
+        this.leftArg = Engine.randomIntValue(leftBorder, rightBorder);
+        this.rightArg = Engine.randomIntValue(leftBorder, rightBorder);
+        int numberOfOperation = Engine.randomIntValue(leftBorderOfOperation, rightBorderOfOperation);
         switch (numberOfOperation) {
             case 1:
                 plus();
