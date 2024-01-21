@@ -58,14 +58,18 @@ public class Calc  {
         this.leftArg = Engine.randomIntValue(leftBorder, rightBorder);
         this.rightArg = Engine.randomIntValue(leftBorder, rightBorder);
         int numberOfOperation = Engine.randomIntValue(leftBorderOfOperation, rightBorderOfOperation);
+
+        final int startPlus = 1;
+        final int startMinus = 2;
+        final int startMultiplication = 3;
         switch (numberOfOperation) {
-            case 1:
+            case startPlus:
                 plus();
                 break;
-            case 2:
+            case startMinus:
                 minus();
                 break;
-            case 3:
+            case startMultiplication:
                 multiplication();
                 break;
             default:
