@@ -6,34 +6,40 @@ public class App {
     public static void main(String[] args) {
 
         App.printMenu();
-
         System.out.print("You choice: ");
         Scanner choiceStream = new Scanner(System.in);
         int choice = choiceStream.nextInt();
         Engine engine = new Engine();
 
-        switch (choice) {
 
-            case 1:
+        final int startCli = 1;
+        final int startExit = 0;
+        final int startEven = 2;
+        final int startCalc = 3;
+        final int startGCD = 4;
+        final int startProgression = 5;
+        final int startPrime = 6;
+
+        switch (choice) {
+            case startCli:
                 Cli.greeting();
                 break;
-
-            case 0:
+            case startExit:
                 System.out.println("Goodbye!");
                 break;
-            case 2:
+            case startEven:
                 engine.start("Even");
                 break;
-            case 3:
+            case startCalc:
                 engine.start("Calc");
                 break;
-            case 4:
+            case startGCD:
                 engine.start("GCD");
                 break;
-            case 5:
+            case startProgression:
                 engine.start("Progression");
                 break;
-            case 6:
+            case startPrime:
                 engine.start("Prime");
                 break;
             default:
@@ -43,7 +49,6 @@ public class App {
     }
 
     public static void printMenu() {
-        // Меню выбора игры
         System.out.println("Please enter the game number and press Enter.");
         System.out.println("1 - Greet");
         System.out.println("2 - Even");

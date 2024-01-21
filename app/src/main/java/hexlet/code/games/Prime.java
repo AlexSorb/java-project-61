@@ -4,8 +4,8 @@ import hexlet.code.Engine;
 
 public class Prime {
 
-    int number;
-    String rightAnswer;
+    private int number;
+    private String rightAnswer;
     public Prime() {
         changeQuestion();
     }

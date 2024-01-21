@@ -17,6 +17,10 @@ public class Engine {
         this.userName = "";
     }
 
+    /**
+     * The method starts the game entered by the gameName parameter.
+     * @param gameName
+     */
     public void start(String gameName) {
         greeting();
         switch (gameName) {

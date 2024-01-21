@@ -3,9 +3,9 @@ package hexlet.code.games;
 import hexlet.code.Engine;
 
 public class Progression {
-    int[] progression;
-    int  positionOfWishingElement;
-    int rightAnswer;
+    private int[] progression;
+    private int  positionOfWishingElement;
+    private int rightAnswer;
 
     public Progression() {
         changeQuestion();
