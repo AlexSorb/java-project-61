@@ -2,69 +2,48 @@ package hexlet.code;
 
 import java.util.Scanner;
 
-import hexlet.code.games.Calc;
-import hexlet.code.games.Even;
-import hexlet.code.games.GCD;
-import hexlet.code.games.Prime;
-import hexlet.code.games.Progression;
-
 
 public class Engine {
-    private String userName;
-    private final int countLives = 3;
 
-    public Engine() {
-        this.userName = "";
-    }
-
-    /**
-     * The method starts the game entered by the gameName parameter.
-     * @param gameName
-     */
-    public void start(String gameName) {
-        greeting();
-        switch (gameName) {
-            case "Even":
-                startEven();
-                break;
-            case "Calc":
-                startCalc();
-                break;
-            case "GCD":
-                startGCD();
-                break;
-            case "Progression":
-                startProgression();
-                break;
-            case "Prime":
-                startPrime();
-                break;
-            default:
-                break;
-        }
-    }
-    private void greeting() {
+    private static String greeting() {
         System.out.println("Welcome to the Brain Games!");
         System.out.print("May I have your name ? ");
-        Scanner scanner = new Scanner(System.in);
-        String uName = scanner.next();
-        System.out.println("Hello, " + uName + "!");
-        this.userName = uName;
+        String userName = Engine.getUserInput();
+        System.out.println("Hello, " + userName + "!");
+        return userName;
     }
 
-    private String getUserInput() {
+    public static void gameStart(String gameRule, String[][] levels) {
+        String name = Engine.greeting();
+        Engine.printGameRules(gameRule);
+        final int numQuestion = 0;
+        final int numAnswer = 1;
+
+        for (int i = 0; i < levels.length; i++) {
+            System.out.println("Question: " + levels[i][numQuestion]);
+            System.out.print("Your answer: ");
+            String userAnswer = Engine.getUserInput();
+            if (!isRight(userAnswer, levels[i][numAnswer])) {
+                wrongAnswer(userAnswer, levels[i][numAnswer], name);
+                return;
+            }
+            System.out.println("Correct!");
+        }
+        winGame(name);
+    }
+    private static String getUserInput() {
         String userInput = "";
         Scanner inputStr = new Scanner(System.in);
         userInput = inputStr.next().trim();
         return userInput;
     }
-    private void winGame() {
-        System.out.println("Congratulations, " + this.userName + "!");
+    private static void winGame(String userName) {
+        System.out.println("Congratulations, " + userName + "!");
     }
-    private void wrongAnswer(String userAnswer, String rightAnswer) {
+    private static void wrongAnswer(String userAnswer, String rightAnswer, String userName) {
         System.out.println("'" + userAnswer + "' is wrong answer ;(. Correct answer was '"
                 + rightAnswer + "'.");
-        System.out.println("Let's try again, " + this.userName + "!");
+        System.out.println("Let's try again, " + userName + "!");
     }
 
 
@@ -76,93 +55,10 @@ public class Engine {
         final int right = 26;
         return randomIntValue(left, right);
     }
-
-    private void startCalc() {
-        Calc calcGame = new Calc();
-        System.out.println(calcGame.getGameRules());
-        for (int i = 0; i < countLives; i++) {
-            System.out.println("Question: " + calcGame.getQuestion());
-            System.out.print("Your answer: ");
-            String userAnswer = getUserInput();
-            if (calcGame.isRightAnswer(userAnswer)) {
-                System.out.println("Correct!");
-                calcGame.changeQuestion();
-            } else {
-                wrongAnswer(userAnswer, calcGame.getRightAnswer());
-                return;
-            }
-        }
-        winGame();
+    private static void printGameRules(String rule) {
+        System.out.println(rule);
     }
-
-    private void startEven() {
-        Even evenGame = new Even();
-        System.out.println(evenGame.getGameRules());
-        for (int i = 0; i < countLives; i++) {
-            System.out.println("Question: " + evenGame.getQuestion());
-            System.out.print("Your answer: ");
-            String userAnswer = getUserInput();
-            if (evenGame.isRightAnswer(userAnswer)) {
-                System.out.println("Correct!");
-                evenGame.changeQuestion();
-            } else {
-                wrongAnswer(userAnswer, evenGame.getRightAnswer());
-                return;
-            }
-        }
-        winGame();
-    }
-
-    private void startGCD() {
-        GCD gcdGame = new GCD();
-        System.out.println(gcdGame.getGameRules());
-        for (int i = 0; i < countLives; i++) {
-            System.out.println("Question: " + gcdGame.getQuestion());
-            System.out.print("Your answer: ");
-            String userAnswer = getUserInput();
-            if (gcdGame.isRightAnswer(userAnswer)) {
-                System.out.println("Correct!");
-                gcdGame.changeQuestion();
-            } else {
-                wrongAnswer(userAnswer, gcdGame.getRightAnswer());
-                return;
-            }
-        }
-        winGame();
-    }
-    private void startPrime() {
-        Prime primeGame = new Prime();
-        System.out.println(primeGame.getGameRules());
-        for (int i = 0; i < countLives; i++) {
-            System.out.println("Question: " + primeGame.getQuestion());
-            System.out.print("Your answer: ");
-            String userAnswer = getUserInput();
-            if (primeGame.isRightAnswer(userAnswer)) {
-                System.out.println("Correct!");
-                primeGame.changeQuestion();
-            } else {
-                wrongAnswer(userAnswer, primeGame.getRightAnswer());
-                return;
-            }
-        }
-        winGame();
-    }
-
-    private void startProgression() {
-        Progression progressionGame = new Progression();
-        System.out.println(progressionGame.getGameRules());
-        for (int i = 0; i < countLives; i++) {
-            System.out.println("Question: " + progressionGame.getQuestion());
-            System.out.print("Your answer: ");
-            String userAnswer = getUserInput();
-            if (progressionGame.isRightAnswer(userAnswer)) {
-                System.out.println("Correct!");
-                progressionGame.changeQuestion();
-            } else {
-                wrongAnswer(userAnswer, progressionGame.getRightAnswer());
-                return;
-            }
-        }
-        winGame();
+    private static boolean isRight(String userAnswer, String rightAnswer) {
+        return userAnswer.trim().equalsIgnoreCase(rightAnswer);
     }
 }

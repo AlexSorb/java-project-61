@@ -2,91 +2,85 @@ package hexlet.code.games;
 
 import hexlet.code.Engine;
 public class Calc  {
-    private int leftArg;
-    private int rightArg;
-    private int rightAnswer;
-    private String nameOfOperation;
-
-
-    public Calc() {
-        this.leftArg = 0;
-        this.rightArg = 0;
-        changeQuestion();
-    }
-
-    /**
-     * Method returns the game rule for the Calc game.
-     * @return game rule.
-     */
-    public String getGameRules() {
+    public static String getGameRules() {
         return "What is the result of the expression?";
     }
 
-    /**
-     * The method returns a question for the user.
-     * @return question for user.
-     */
-    public String getQuestion() {
-        return leftArg + " " + nameOfOperation + " " + rightArg;
+    private static String getQuestion(int num1, int num2, String operation)  {
+        return num1 + " " + operation + " " + num2;
     }
 
-    /**
-     * The method returns the correct answer.
-     * @return right answer
-     */
-    public String getRightAnswer() {
-        return Integer.toString(rightAnswer);
-    }
-
-    /**
-     * The method returns true if the correct answer is given.
-     * @param userAnswer
-     * @return true if the answer is correct
-     */
-    public boolean isRightAnswer(String userAnswer) {
-        return Integer.parseInt(userAnswer)  == rightAnswer;
-    }
-
-    /**
-     * The method sets new parameters for the game.
-     */
-    public void changeQuestion() {
+    public static String[][] createLevels(int numberOfLevels) {
+        final int numQuestion = 0;
+        final int numAnswer = 1;
+        final int size = 2;
         final int leftBorder = 1;
-        final int rightBorder = 11;
-        final int leftBorderOfOperation = 1;
-        final int rightBorderOfOperation = 4;
-        this.leftArg = Engine.randomIntValue(leftBorder, rightBorder);
-        this.rightArg = Engine.randomIntValue(leftBorder, rightBorder);
-        int numberOfOperation = Engine.randomIntValue(leftBorderOfOperation, rightBorderOfOperation);
+        final int rightBorder = 4;
 
+        String[][] levels = new String[numberOfLevels][size];
+        for (int i = 0; i < levels.length; i++) {
+            int left = Engine.randomIntValue();
+            int right = Engine.randomIntValue();
+            int numbOperation = Engine.randomIntValue(leftBorder, rightBorder);
+            levels[i][numQuestion] = Calc.getQuestion(left, right, Calc.getSymbolOperation(numbOperation));
+            levels[i][numAnswer] = Calc.getRightAnswer(left, right, numbOperation);
+        }
+        return levels;
+    }
+    private static String getRightAnswer(int leftArg, int rightArg, int numberOperation) {
         final int startPlus = 1;
         final int startMinus = 2;
         final int startMultiplication = 3;
-        switch (numberOfOperation) {
+        int result;
+
+        switch (numberOperation) {
             case startPlus:
-                plus();
+                result = plus(leftArg, rightArg);
                 break;
             case startMinus:
-                minus();
+                result = minus(leftArg, rightArg);
                 break;
             case startMultiplication:
-                multiplication();
+                result = multiplication(leftArg, rightArg);
                 break;
             default:
-                plus();
+                result = plus(leftArg, rightArg);
                 break;
         }
+        return Integer.toString(result);
     }
-    private void plus() {
-        this.nameOfOperation = "+";
-        this.rightAnswer = leftArg + rightArg;
+    private static String getSymbolOperation(int numberOperation) {
+        final int startPlus = 1;
+        final int startMinus = 2;
+        final int startMultiplication = 3;
+        String result = "";
+
+        switch (numberOperation) {
+
+            case startPlus:
+                result = "+";
+                break;
+            case startMinus:
+                result = "-";
+                break;
+            case startMultiplication:
+                result = "*";
+                break;
+            default:
+                result = "+";
+                break;
+        }
+
+        return result;
     }
-    private void  minus() {
-        this.nameOfOperation = "-";
-        this.rightAnswer = leftArg - rightArg;
+
+    private static int plus(int num1, int num2) {
+        return num1 + num2;
     }
-    private void  multiplication() {
-        this.nameOfOperation = "*";
-        this.rightAnswer = leftArg * rightArg;
+    private static int  minus(int num1, int num2) {
+        return num1 - num2;
+    }
+    private static int  multiplication(int num1, int num2) {
+        return num1 * num2;
     }
 }

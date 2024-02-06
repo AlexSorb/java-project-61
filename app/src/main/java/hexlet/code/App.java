@@ -1,5 +1,11 @@
 package hexlet.code;
 
+import hexlet.code.games.Calc;
+import hexlet.code.games.Even;
+import hexlet.code.games.GCD;
+import hexlet.code.games.Prime;
+import hexlet.code.games.Progression;
+
 import java.util.Scanner;
 
 public class App {
@@ -9,8 +15,9 @@ public class App {
         System.out.print("You choice: ");
         Scanner choiceStream = new Scanner(System.in);
         int choice = choiceStream.nextInt();
-        Engine engine = new Engine();
 
+
+        final int countLevels = 3;
 
         final int startCli = 1;
         final int startExit = 0;
@@ -28,22 +35,22 @@ public class App {
                 System.out.println("Goodbye!");
                 break;
             case startEven:
-                engine.start("Even");
+                Engine.gameStart(Even.getGameRules(), Even.createLevels(countLevels));
                 break;
             case startCalc:
-                engine.start("Calc");
+                Engine.gameStart(Calc.getGameRules(), Calc.createLevels(countLevels));
                 break;
             case startGCD:
-                engine.start("GCD");
+                Engine.gameStart(GCD.getGameRules(), GCD.createLevels(countLevels));
                 break;
             case startProgression:
-                engine.start("Progression");
+                Engine.gameStart(Progression.getGameRules(), Progression.createLevels(countLevels));
                 break;
             case startPrime:
-                engine.start("Prime");
+                Engine.gameStart(Prime.getGameRules(), Prime.createLevels(countLevels));
                 break;
             default:
-                System.out.println("Error1");
+                System.out.println("Incorrect input, try again!");
                 break;
         }
     }
