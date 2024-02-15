@@ -10,15 +10,15 @@ import java.util.Scanner;
 
 public class App {
 
-    final static int COUNT_LEVELS = 3;
-    final static int START_CLI = 1;
-    final static int START_EXIT = 0;
-    final static int START_EVEN = 2;
-    final static int START_CALC = 3;
-    final static int START_GCD = 4;
-    final static int START_PROGRESSION = 5;
-    final static int START_PRIME = 6;
-    final static String[] GAME_NAME = {"Exit", "Greet", "Even", "Calculator", "GCD", "Progression","Prime"};
+    private static final int COUNT_LEVELS = 3;
+    private static final int START_CLI = 1;
+    private static final int START_EXIT = 0;
+    private static final int START_EVEN = 2;
+    private static final int START_CALC = 3;
+    private static final int START_GCD = 4;
+    private static final int START_PROGRESSION = 5;
+    private static final int START_PRIME = 6;
+    private static final String[] GAME_NAME = {"Exit", "Greet", "Even", "Calculator", "GCD", "Progression", "Prime"};
     public static void main(String[] args) {
 
         App.printMenu();

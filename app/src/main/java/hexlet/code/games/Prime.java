@@ -12,7 +12,7 @@ public class Prime {
 
         for (int i = 0; i < countLevels; i++) {
             int question = Engine.randomIntValue();
-            String rightAnswer = Prime.isPrimeNumber(question) ? "yes" : "no";;
+            String rightAnswer = Prime.isPrimeNumber(question) ? "yes" : "no";
 
             Engine.askQuestion(Integer.toString(question));
             String userAnswer = Engine.getAnswer();

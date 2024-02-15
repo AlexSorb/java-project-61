@@ -21,15 +21,15 @@ public class Engine {
         System.out.println("Congratulations, " + userName + "!");
     }
     public static void wrongAnswer(String userAnswer, String rightAnswer, String userName) {
-        String wrongMassage = "'" +
-                userAnswer +
-                "' is wrong answer ;(. Correct answer was '" +
-                rightAnswer +
-                "'.";
+        String wrongMassage = "'"
+                + userAnswer
+                + "' is wrong answer ;(. Correct answer was '"
+                + rightAnswer
+                + "'.";
 
-        String restartMassage = "Let's try again, " +
-                userName +
-                "!";
+        String restartMassage = "Let's try again, "
+                + userName
+                + "!";
 
         System.out.println(wrongMassage);
         System.out.println(restartMassage);

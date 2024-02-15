@@ -2,10 +2,10 @@ package hexlet.code.games;
 
 import hexlet.code.Engine;
 public class Calc  {
-    final static String GAME_RULE = "What is the result of the expression?";
-    final static String[] SYMBOLS_OPERATION = {"+", "-", "*"};
-    final static int MAX_NUMBER = 10;
-    final static int MIN_NUMBER = 1;
+    private static final String GAME_RULE = "What is the result of the expression?";
+    private static final String[] SYMBOLS_OPERATION = {"+", "-", "*"};
+    private static final int MAX_NUMBER = 10;
+    private static final int MIN_NUMBER = 1;
 
     public static void start(int countLevels) {
         String userName = Engine.greeting();

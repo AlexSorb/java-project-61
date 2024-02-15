@@ -3,7 +3,7 @@ package hexlet.code.games;
 import hexlet.code.Engine;
 
 public class Even {
-    final static private String GAME_RULE = "Answer 'yes' if the number is even, otherwise answer 'no'.";
+    private static final String GAME_RULE = "Answer 'yes' if the number is even, otherwise answer 'no'.";
 
     public static void start(int countLevels) {
         String userName = Engine.greeting();
@@ -11,7 +11,7 @@ public class Even {
 
         for (int i = 0; i < countLevels; i++) {
             int question = Engine.randomIntValue();
-            String rightAnswer = Even.isEven(question) ? "yes" : "no";;
+            String rightAnswer = Even.isEven(question) ? "yes" : "no";
 
             Engine.askQuestion(Integer.toString(question));
             String userAnswer = Engine.getAnswer();
