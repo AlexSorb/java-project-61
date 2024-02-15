@@ -4,34 +4,41 @@ import hexlet.code.Engine;
 
 public class Progression {
 
-    public static String getGameRules() {
-        return "What number is missing in the progression?";
-    }
+    private static final String GAME_RULE = "What number is missing in the progression?";
+    private static final int LEFT_BORDER_OF_SIZE_PROGRESSION = 5;
+    private static final int RIGHT_BORDER_OF_SIZE_PROGRESSION = 10;
+    private static final int LEFT_BORDER_OF_STEP_PROGRESSION = 5;
+    private static final int RIGHT_BORDER_OF_STEP_PROGRESSION = 10;
 
-    public static String[][] createLevels(int numberOfLevels) {
-        final int size = 2;
-        final int leftBorder = 5;
-        final int rightBorder = 10;
-        final int start = 0;
-        final int numQuestion = 0;
-        final int numAnswer = 1;
 
-        String[][] levels = new String[numberOfLevels][size];
-        for (int i = 0; i < levels.length; i++) {
-            int startProgression = Engine.randomIntValue();
-            int sizeProgression = Engine.randomIntValue(leftBorder, rightBorder);
-            int stepProgression = Engine.randomIntValue(leftBorder, rightBorder);
+    public static void start(int countLevels) {
+        String userName = Engine.greeting();
+        Engine.printGameRules(GAME_RULE);
+        for (int i = 0; i < countLevels; i++) {
+            int[] progression = Progression.generateProgression();
+            int positionOfWishingElement = Engine.randomIntValue(0, progression.length);
 
-            int[] progression = Progression.generateProgression(startProgression, sizeProgression, stepProgression);
-            int positionOfWishingElement = Engine.randomIntValue(start, progression.length);
-            levels[i][numQuestion] = Progression.getQuestion(progression, positionOfWishingElement);
-            levels[i][numAnswer] = Progression.getRightAnswer(progression, positionOfWishingElement);
 
+            String question = getQuestion(progression, positionOfWishingElement);
+            int rightAnswer = progression[positionOfWishingElement];
+
+            Engine.askQuestion(question);
+            String userAnswer = Engine.getAnswer();
+            if (!Engine.isRightAnswer(userAnswer, Integer.toString(rightAnswer))) {
+                Engine.wrongAnswer(userAnswer, Integer.toString(rightAnswer), userName);
+                return;
+            }
+            System.out.println("Correct!");
         }
-        return levels;
+        Engine.winGame(userName);
     }
+
 
     private static String getQuestion(int[] progression, int positionOfWishingElement) {
+        if (positionOfWishingElement < 0 || positionOfWishingElement > progression.length) {
+            return null;
+        }
+
         StringBuilder result = new StringBuilder();
         for (int i = 0; i < progression.length; i++) {
             if (i == positionOfWishingElement) {
@@ -43,23 +50,17 @@ public class Progression {
         }
         return result.toString().trim();
     }
-    private static int[] generateProgression(int start, int sizeProgression, int step) {
+
+    private static int[] generateProgression() {
+        int sizeProgression = Engine.randomIntValue(LEFT_BORDER_OF_SIZE_PROGRESSION, RIGHT_BORDER_OF_SIZE_PROGRESSION);
+        int stepOfProgression = Engine.randomIntValue(LEFT_BORDER_OF_STEP_PROGRESSION,
+                RIGHT_BORDER_OF_STEP_PROGRESSION);
         int[] progression = new int[sizeProgression];
-        if (progression.length <= 0) {
-            return null;
-        }
-        progression[0] = start;
+
+        progression[0] = Engine.randomIntValue();
         for (int i = 1; i < progression.length; i++) {
-            progression[i] = progression[i - 1] + step;
+            progression[i] = progression[i - 1] + stepOfProgression;
         }
         return progression;
-    }
-
-
-    private static String getRightAnswer(int[] progression, int positionOfWishingElement) {
-        if (positionOfWishingElement >= progression.length || positionOfWishingElement < 0) {
-            return null;
-        }
-        return Integer.toString(progression[positionOfWishingElement]);
     }
 }

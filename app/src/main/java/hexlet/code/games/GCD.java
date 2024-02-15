@@ -3,32 +3,27 @@ package hexlet.code.games;
 import hexlet.code.Engine;
 
 public class GCD {
+    final static String GAME_RULE = "Find the greatest common divisor of given numbers.";
 
-    public static String getGameRules() {
-        return "Find the greatest common divisor of given numbers.";
-    }
+    public static void start(int countLevels) {
+        String userName = Engine.greeting();
+        Engine.printGameRules(GAME_RULE);
 
-    private static String getQuestion(int leftArg, int rightArg) {
-        return leftArg + " " + rightArg;
-    }
+        for (int i = 0; i < countLevels; i++) {
+            int leftArg = Engine.randomIntValue();
+            int rightArg = Engine.randomIntValue();
+            String question = leftArg + " " + rightArg;
+            String rightAnswer = Integer.toString(GCD.getGCD(leftArg, rightArg));
 
-    public static String[][] createLevels(int numberOfLevels) {
-        final int numQuestion = 0;
-        final int numAnswer = 1;
-        final int size = 2;
-        String[][] levels = new String[numberOfLevels][size];
-
-        for (int i = 0; i < levels.length; i++) {
-            int left = Engine.randomIntValue();
-            int right = Engine.randomIntValue();
-            levels[i][numQuestion] = GCD.getQuestion(left, right);
-            levels[i][numAnswer] = GCD.getRightAnswer(left, right);
+            Engine.askQuestion(question);
+            String userAnswer = Engine.getAnswer();
+            if (!Engine.isRightAnswer(userAnswer, rightAnswer)) {
+                Engine.wrongAnswer(userAnswer, rightAnswer, userName);
+                return;
+            }
+            System.out.println("Correct!");
         }
-        return levels;
-    }
-
-    private static String getRightAnswer(int leftArg, int rightArg) {
-        return Integer.toString(getGCD(leftArg, rightArg));
+        Engine.winGame(userName);
     }
 
     private static int getGCD(int firstNumber, int secondNumber) {

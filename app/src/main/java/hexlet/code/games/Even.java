@@ -3,30 +3,25 @@ package hexlet.code.games;
 import hexlet.code.Engine;
 
 public class Even {
+    final static private String GAME_RULE = "Answer 'yes' if the number is even, otherwise answer 'no'.";
 
-    public static String getGameRules() {
-        return "Answer 'yes' if the number is even, otherwise answer 'no'.";
-    }
-    public static String[][] createLevels(int numberOfLevels) {
-        final int size = 2;
-        final int numQuestion = 0;
-        final int numAnswer = 1;
-        String[][] levels = new String[numberOfLevels][size];
+    public static void start(int countLevels) {
+        String userName = Engine.greeting();
+        Engine.printGameRules(GAME_RULE);
 
-        for (int i = 0; i < levels.length; i++) {
-            int number = Engine.randomIntValue();
-            levels[i][numQuestion] = Even.getQuestion(number);
-            levels[i][numAnswer] = Even.getRightAnswer(number);
+        for (int i = 0; i < countLevels; i++) {
+            int question = Engine.randomIntValue();
+            String rightAnswer = Even.isEven(question) ? "yes" : "no";;
+
+            Engine.askQuestion(Integer.toString(question));
+            String userAnswer = Engine.getAnswer();
+            if (!Engine.isRightAnswer(userAnswer, rightAnswer)) {
+                Engine.wrongAnswer(userAnswer, rightAnswer, userName);
+                return;
+            }
+            System.out.println("Correct!");
         }
-        return levels;
-    }
-
-    private static String getQuestion(int number) {
-        return Integer.toString(number);
-    }
-
-    private static String getRightAnswer(int number) {
-        return Even.isEven(number) ? "yes" : "no";
+        Engine.winGame(userName);
     }
 
     private static boolean isEven(int num) {

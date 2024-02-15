@@ -4,29 +4,25 @@ import hexlet.code.Engine;
 
 public class Prime {
 
-    public static String getGameRules() {
-        return "Answer 'yes' if given number is prime. Otherwise answer 'no'.";
-    }
+    private static final String GAME_RULE = "Answer 'yes' if given number is prime. Otherwise answer 'no'.";
 
-    public static String[][] createLevels(int numberOfLevels) {
-        final int size = 2;
-        final int numQuestion = 0;
-        final int numAnswer = 1;
-        String[][] levels = new String[numberOfLevels][size];
-        for (int i = 0; i < levels.length; i++) {
-            int number = Engine.randomIntValue();
-            levels[i][numQuestion] = Prime.getQuestion(number);
-            levels[i][numAnswer] = Prime.getRightAnswer(number);
+    public static void start(int countLevels) {
+        String userName = Engine.greeting();
+        Engine.printGameRules(GAME_RULE);
+
+        for (int i = 0; i < countLevels; i++) {
+            int question = Engine.randomIntValue();
+            String rightAnswer = Prime.isPrimeNumber(question) ? "yes" : "no";;
+
+            Engine.askQuestion(Integer.toString(question));
+            String userAnswer = Engine.getAnswer();
+            if (!Engine.isRightAnswer(userAnswer, rightAnswer)) {
+                Engine.wrongAnswer(userAnswer, rightAnswer, userName);
+                return;
+            }
+            System.out.println("Correct!");
         }
-        return levels;
-    }
-
-    private static String getQuestion(int number) {
-        return Integer.toString(number);
-    }
-
-    private static String getRightAnswer(int number) {
-        return isPrimeNumber(number) ? "yes" : "no";
+        Engine.winGame(userName);
     }
     private static boolean isPrimeNumber(int num) {
         if (num == 1) {

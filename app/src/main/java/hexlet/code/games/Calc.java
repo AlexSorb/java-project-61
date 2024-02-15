@@ -2,75 +2,51 @@ package hexlet.code.games;
 
 import hexlet.code.Engine;
 public class Calc  {
-    public static String getGameRules() {
-        return "What is the result of the expression?";
-    }
+    final static String GAME_RULE = "What is the result of the expression?";
+    final static String[] SYMBOLS_OPERATION = {"+", "-", "*"};
+    final static int MAX_NUMBER = 10;
+    final static int MIN_NUMBER = 1;
 
-    private static String getQuestion(int num1, int num2, String operation)  {
-        return num1 + " " + operation + " " + num2;
-    }
+    public static void start(int countLevels) {
+        String userName = Engine.greeting();
+        Engine.printGameRules(GAME_RULE);
+        for (int i = 0; i < countLevels; i++) {
+            int leftArgument = Engine.randomIntValue(MIN_NUMBER, MAX_NUMBER);
+            int rightArgument = Engine.randomIntValue(MIN_NUMBER, MAX_NUMBER);
+            int numberOfOperation = Engine.randomIntValue(0, SYMBOLS_OPERATION.length);
 
-    public static String[][] createLevels(int numberOfLevels) {
-        final int numQuestion = 0;
-        final int numAnswer = 1;
-        final int size = 2;
-        final int leftBorder = 1;
-        final int rightBorder = 4;
+            String question = leftArgument + " " +  SYMBOLS_OPERATION[numberOfOperation] + " " + rightArgument;
+            int rightAnswer = Calc.getRightAnswer(leftArgument, rightArgument, numberOfOperation);
 
-        String[][] levels = new String[numberOfLevels][size];
-        for (int i = 0; i < levels.length; i++) {
-            int left = Engine.randomIntValue();
-            int right = Engine.randomIntValue();
-            int numbOperation = Engine.randomIntValue(leftBorder, rightBorder);
-            levels[i][numQuestion] = Calc.getQuestion(left, right, Calc.getSymbolOperation(numbOperation));
-            levels[i][numAnswer] = Calc.getRightAnswer(left, right, numbOperation);
+            Engine.askQuestion(question);
+            String userAnswer = Engine.getAnswer();
+            if (!Engine.isRightAnswer(userAnswer, Integer.toString(rightAnswer))) {
+                Engine.wrongAnswer(userAnswer, Integer.toString(rightAnswer), userName);
+                return;
+            }
+            System.out.println("Correct!");
         }
-        return levels;
+        Engine.winGame(userName);
     }
-    private static String getRightAnswer(int leftArg, int rightArg, int numberOperation) {
-        final int startPlus = 1;
-        final int startMinus = 2;
-        final int startMultiplication = 3;
-        int result;
 
-        switch (numberOperation) {
-            case startPlus:
+
+    private static int getRightAnswer(int leftArg, int rightArg, int numberOfOperation) {
+        int result;
+        switch (SYMBOLS_OPERATION[numberOfOperation]) {
+            case "+":
                 result = plus(leftArg, rightArg);
                 break;
-            case startMinus:
+            case "-":
                 result = minus(leftArg, rightArg);
                 break;
-            case startMultiplication:
+            case "*":
                 result = multiplication(leftArg, rightArg);
                 break;
             default:
-                result = plus(leftArg, rightArg);
+                System.out.println("Incorrect input!");
+                result = -1;
                 break;
         }
-        return Integer.toString(result);
-    }
-    private static String getSymbolOperation(int numberOperation) {
-        final int startPlus = 1;
-        final int startMinus = 2;
-        final int startMultiplication = 3;
-        String result = "";
-
-        switch (numberOperation) {
-
-            case startPlus:
-                result = "+";
-                break;
-            case startMinus:
-                result = "-";
-                break;
-            case startMultiplication:
-                result = "*";
-                break;
-            default:
-                result = "+";
-                break;
-        }
-
         return result;
     }
 
