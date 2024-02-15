@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class Engine {
 
-    private static String greeting() {
+    public static String greeting() {
         System.out.println("Welcome to the Brain Games!");
         System.out.print("May I have your name ? ");
         String userName = Engine.getUserInput();
@@ -13,37 +13,26 @@ public class Engine {
         return userName;
     }
 
-    public static void gameStart(String gameRule, String[][] levels) {
-        String name = Engine.greeting();
-        Engine.printGameRules(gameRule);
-        final int numQuestion = 0;
-        final int numAnswer = 1;
-
-        for (int i = 0; i < levels.length; i++) {
-            System.out.println("Question: " + levels[i][numQuestion]);
-            System.out.print("Your answer: ");
-            String userAnswer = Engine.getUserInput();
-            if (!isRight(userAnswer, levels[i][numAnswer])) {
-                wrongAnswer(userAnswer, levels[i][numAnswer], name);
-                return;
-            }
-            System.out.println("Correct!");
-        }
-        winGame(name);
-    }
     private static String getUserInput() {
-        String userInput = "";
         Scanner inputStr = new Scanner(System.in);
-        userInput = inputStr.next().trim();
-        return userInput;
+        return inputStr.next().trim();
     }
-    private static void winGame(String userName) {
+    public static void winGame(String userName) {
         System.out.println("Congratulations, " + userName + "!");
     }
-    private static void wrongAnswer(String userAnswer, String rightAnswer, String userName) {
-        System.out.println("'" + userAnswer + "' is wrong answer ;(. Correct answer was '"
-                + rightAnswer + "'.");
-        System.out.println("Let's try again, " + userName + "!");
+    public static void wrongAnswer(String userAnswer, String rightAnswer, String userName) {
+        String wrongMassage = "'" +
+                userAnswer +
+                "' is wrong answer ;(. Correct answer was '" +
+                rightAnswer +
+                "'.";
+
+        String restartMassage = "Let's try again, " +
+                userName +
+                "!";
+
+        System.out.println(wrongMassage);
+        System.out.println(restartMassage);
     }
 
 
@@ -55,10 +44,18 @@ public class Engine {
         final int right = 26;
         return randomIntValue(left, right);
     }
-    private static void printGameRules(String rule) {
+    public static void printGameRules(String rule) {
         System.out.println(rule);
     }
-    private static boolean isRight(String userAnswer, String rightAnswer) {
+    public static boolean isRightAnswer(String userAnswer, String rightAnswer) {
         return userAnswer.trim().equalsIgnoreCase(rightAnswer);
+    }
+    public static void askQuestion(String question) {
+        System.out.println("Question: " + question);
+    }
+
+    public static String getAnswer() {
+        System.out.print("Your answer: ");
+        return Engine.getUserInput();
     }
 }
