@@ -9,6 +9,16 @@ import hexlet.code.games.Progression;
 import java.util.Scanner;
 
 public class App {
+
+    final static int COUNT_LEVELS = 3;
+    final static int START_CLI = 1;
+    final static int START_EXIT = 0;
+    final static int START_EVEN = 2;
+    final static int START_CALC = 3;
+    final static int START_GCD = 4;
+    final static int START_PROGRESSION = 5;
+    final static int START_PRIME = 6;
+    final static String[] GAME_NAME = {"Exit", "Greet", "Even", "Calculator", "GCD", "Progression","Prime"};
     public static void main(String[] args) {
 
         App.printMenu();
@@ -16,38 +26,27 @@ public class App {
         Scanner choiceStream = new Scanner(System.in);
         int choice = choiceStream.nextInt();
 
-
-        final int countLevels = 3;
-
-        final int startCli = 1;
-        final int startExit = 0;
-        final int startEven = 2;
-        final int startCalc = 3;
-        final int startGCD = 4;
-        final int startProgression = 5;
-        final int startPrime = 6;
-
         switch (choice) {
-            case startCli:
+            case START_CLI:
                 Cli.greeting();
                 break;
-            case startExit:
+            case START_EXIT:
                 System.out.println("Goodbye!");
                 break;
-            case startEven:
-                Engine.gameStart(Even.getGameRules(), Even.createLevels(countLevels));
+            case START_EVEN:
+                Even.start(COUNT_LEVELS);
                 break;
-            case startCalc:
-                Engine.gameStart(Calc.getGameRules(), Calc.createLevels(countLevels));
+            case START_CALC:
+                Calc.start(COUNT_LEVELS);
                 break;
-            case startGCD:
-                Engine.gameStart(GCD.getGameRules(), GCD.createLevels(countLevels));
+            case START_GCD:
+                GCD.start(COUNT_LEVELS);
                 break;
-            case startProgression:
-                Engine.gameStart(Progression.getGameRules(), Progression.createLevels(countLevels));
+            case START_PROGRESSION:
+                Progression.start(COUNT_LEVELS);
                 break;
-            case startPrime:
-                Engine.gameStart(Prime.getGameRules(), Prime.createLevels(countLevels));
+            case START_PRIME:
+                Prime.start(COUNT_LEVELS);
                 break;
             default:
                 System.out.println("Incorrect input, try again!");
@@ -57,13 +56,10 @@ public class App {
 
     public static void printMenu() {
         System.out.println("Please enter the game number and press Enter.");
-        System.out.println("1 - Greet");
-        System.out.println("2 - Even");
-        System.out.println("3 - Calculator");
-        System.out.println("4 - GCD");
-        System.out.println("5 - Progression");
-        System.out.println("6 - Prime");
-        System.out.println("0 - Exit");
+        for (int i = 1; i < GAME_NAME.length; i++) {
+            System.out.println(i + " - " + GAME_NAME[i]);
+        }
+        System.out.println(0 + " - " + GAME_NAME[0]);
     }
 
 }
