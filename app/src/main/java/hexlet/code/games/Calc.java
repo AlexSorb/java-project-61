@@ -6,57 +6,39 @@ public class Calc  {
     private static final String[] SYMBOLS_OPERATION = {"+", "-", "*"};
     private static final int MAX_NUMBER = 10;
     private static final int MIN_NUMBER = 1;
+    private static final int COUNT_LEVELS = 3;
 
-    public static void start(int countLevels) {
-        String userName = Engine.greeting();
-        Engine.printGameRules(GAME_RULE);
-        for (int i = 0; i < countLevels; i++) {
-            int leftArgument = Engine.randomIntValue(MIN_NUMBER, MAX_NUMBER);
-            int rightArgument = Engine.randomIntValue(MIN_NUMBER, MAX_NUMBER);
-            int numberOfOperation = Engine.randomIntValue(0, SYMBOLS_OPERATION.length);
+    public static void startGame() {
 
-            String question = leftArgument + " " +  SYMBOLS_OPERATION[numberOfOperation] + " " + rightArgument;
-            int rightAnswer = Calc.getRightAnswer(leftArgument, rightArgument, numberOfOperation);
+        String[][] result = new String[COUNT_LEVELS][2];
+        for (int level = 0; level < result.length; level++) {
+            for (int i = 0; i < result[level].length; i++) {
+                int leftArgument = Utils.randomIntValue(MIN_NUMBER, MAX_NUMBER);
+                int rightArgument = Utils.randomIntValue(MIN_NUMBER, MAX_NUMBER);
+                int numberOfOperation = Utils.randomIntValue(0, SYMBOLS_OPERATION.length);
 
-            Engine.askQuestion(question);
-            String userAnswer = Engine.getAnswer();
-            if (!Engine.isRightAnswer(userAnswer, Integer.toString(rightAnswer))) {
-                Engine.wrongAnswer(userAnswer, Integer.toString(rightAnswer), userName);
-                return;
+                String question = leftArgument + " " + SYMBOLS_OPERATION[numberOfOperation] + " " + rightArgument;
+                int rightAnswer = Calc.getRightAnswer(leftArgument, rightArgument, numberOfOperation);
+                result[level][0] = question;
+                result[level][1] = Integer.toString(rightAnswer);
             }
-            System.out.println("Correct!");
         }
-        Engine.winGame(userName);
+
+        Engine.startLevels(GAME_RULE, result);
     }
 
 
-    private static int getRightAnswer(int leftArg, int rightArg, int numberOfOperation) {
-        int result;
+    private static Integer getRightAnswer(int leftArg, int rightArg, int numberOfOperation) {
         switch (SYMBOLS_OPERATION[numberOfOperation]) {
             case "+":
-                result = plus(leftArg, rightArg);
-                break;
+                return leftArg + rightArg;
             case "-":
-                result = minus(leftArg, rightArg);
-                break;
+                return leftArg - rightArg;
             case "*":
-                result = multiplication(leftArg, rightArg);
-                break;
+                return leftArg * rightArg;
             default:
-                System.out.println("Incorrect input!");
-                result = -1;
-                break;
+                return null;
         }
-        return result;
     }
 
-    private static int plus(int num1, int num2) {
-        return num1 + num2;
-    }
-    private static int  minus(int num1, int num2) {
-        return num1 - num2;
-    }
-    private static int  multiplication(int num1, int num2) {
-        return num1 * num2;
-    }
 }

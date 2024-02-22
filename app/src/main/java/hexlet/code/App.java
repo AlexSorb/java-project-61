@@ -9,44 +9,42 @@ import hexlet.code.games.Progression;
 import java.util.Scanner;
 
 public class App {
-
-    private static final int COUNT_LEVELS = 3;
-    private static final int START_CLI = 1;
-    private static final int START_EXIT = 0;
-    private static final int START_EVEN = 2;
-    private static final int START_CALC = 3;
-    private static final int START_GCD = 4;
-    private static final int START_PROGRESSION = 5;
-    private static final int START_PRIME = 6;
     private static final String[] GAME_NAME = {"Exit", "Greet", "Even", "Calculator", "GCD", "Progression", "Prime"};
     public static void main(String[] args) {
 
         App.printMenu();
         System.out.print("You choice: ");
+        int choice = -1;
         Scanner choiceStream = new Scanner(System.in);
-        int choice = choiceStream.nextInt();
+        if (choiceStream.hasNextInt()) {
+            choice = choiceStream.nextInt();
+        }
+        if (choice < 0 || choice >= GAME_NAME.length) {
+            System.out.println("Incorrect input, try again!");
+            return;
+        }
 
-        switch (choice) {
-            case START_CLI:
+        switch (GAME_NAME[choice]) {
+            case "Greet":
                 Cli.greeting();
                 break;
-            case START_EXIT:
+            case "Exit":
                 System.out.println("Goodbye!");
                 break;
-            case START_EVEN:
-                Even.start(COUNT_LEVELS);
+            case "Even":
+                Even.startGame();
                 break;
-            case START_CALC:
-                Calc.start(COUNT_LEVELS);
+            case "Calculator":
+                Calc.startGame();
                 break;
-            case START_GCD:
-                GCD.start(COUNT_LEVELS);
+            case "GCD":
+                GCD.startGame();
                 break;
-            case START_PROGRESSION:
-                Progression.start(COUNT_LEVELS);
+            case "Progression":
+                Progression.startGame();
                 break;
-            case START_PRIME:
-                Prime.start(COUNT_LEVELS);
+            case "Prime":
+                Prime.startGame();
                 break;
             default:
                 System.out.println("Incorrect input, try again!");

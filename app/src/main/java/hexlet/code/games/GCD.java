@@ -4,26 +4,25 @@ import hexlet.code.Engine;
 
 public class GCD {
     private static final String GAME_RULE = "Find the greatest common divisor of given numbers.";
+    private static final int COUNT_LEVELS = 3;
 
-    public static void start(int countLevels) {
-        String userName = Engine.greeting();
-        Engine.printGameRules(GAME_RULE);
 
-        for (int i = 0; i < countLevels; i++) {
-            int leftArg = Engine.randomIntValue();
-            int rightArg = Engine.randomIntValue();
-            String question = leftArg + " " + rightArg;
-            String rightAnswer = Integer.toString(GCD.getGCD(leftArg, rightArg));
+    public static void startGame() {
 
-            Engine.askQuestion(question);
-            String userAnswer = Engine.getAnswer();
-            if (!Engine.isRightAnswer(userAnswer, rightAnswer)) {
-                Engine.wrongAnswer(userAnswer, rightAnswer, userName);
-                return;
+        String[][] levels = new String[COUNT_LEVELS][2];
+        for (int level = 0; level < levels.length; level++) {
+            for (int i = 0; i < levels[level].length; i++) {
+                int leftArgument = Utils.randomIntValue();
+                int rightArgument = Utils.randomIntValue();
+
+                String question = leftArgument + " " + rightArgument;
+                int rightAnswer = GCD.getGCD(leftArgument, rightArgument);
+                levels[level][0] = question;
+                levels[level][1] = Integer.toString(rightAnswer);
             }
-            System.out.println("Correct!");
         }
-        Engine.winGame(userName);
+
+        Engine.startLevels(GAME_RULE, levels);
     }
 
     private static int getGCD(int firstNumber, int secondNumber) {

@@ -4,6 +4,8 @@ import java.util.Scanner;
 
 
 public class Engine {
+    private static final int NUMBER_OF_QUESTION = 0;
+    private static final int NUMBER_OF_ANSWER = 1;
 
     public static String greeting() {
         System.out.println("Welcome to the Brain Games!");
@@ -16,9 +18,6 @@ public class Engine {
     private static String getUserInput() {
         Scanner inputStr = new Scanner(System.in);
         return inputStr.next().trim();
-    }
-    public static void winGame(String userName) {
-        System.out.println("Congratulations, " + userName + "!");
     }
     public static void wrongAnswer(String userAnswer, String rightAnswer, String userName) {
         String wrongMassage = "'"
@@ -35,27 +34,24 @@ public class Engine {
         System.out.println(restartMassage);
     }
 
+    public static void startLevels(String gameRule, String[][]date) {
+        String userName = Engine.greeting();
+        System.out.println(gameRule);
 
-    public static int randomIntValue(int leftBorder, int rightBorder) {
-        return (int) (Math.random() * (rightBorder - leftBorder)) + leftBorder;
-    }
-    public static int randomIntValue() {
-        final int left = 1;
-        final int right = 26;
-        return randomIntValue(left, right);
-    }
-    public static void printGameRules(String rule) {
-        System.out.println(rule);
-    }
-    public static boolean isRightAnswer(String userAnswer, String rightAnswer) {
-        return userAnswer.trim().equalsIgnoreCase(rightAnswer);
-    }
-    public static void askQuestion(String question) {
-        System.out.println("Question: " + question);
-    }
+        for (String[] level : date) {
+            String question = level[NUMBER_OF_QUESTION];
+            String rightAnswer = level[NUMBER_OF_ANSWER];
 
-    public static String getAnswer() {
-        System.out.print("Your answer: ");
-        return Engine.getUserInput();
+            System.out.println("Question: " + question);
+
+            System.out.print("Your answer: ");
+            String userAnswer = Engine.getUserInput();
+            if (!userAnswer.equalsIgnoreCase(rightAnswer)) {
+                Engine.wrongAnswer(userAnswer, rightAnswer, userName);
+                return;
+            }
+            System.out.println("Correct!");
+        }
+        System.out.println("Congratulations, " + userName + "!");
     }
 }

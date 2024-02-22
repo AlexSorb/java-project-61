@@ -4,24 +4,20 @@ import hexlet.code.Engine;
 
 public class Even {
     private static final String GAME_RULE = "Answer 'yes' if the number is even, otherwise answer 'no'.";
+    private static final int COUNT_LEVELS = 3;
 
-    public static void start(int countLevels) {
-        String userName = Engine.greeting();
-        Engine.printGameRules(GAME_RULE);
+    public static void startGame() {
+        String[][] levels = new String[COUNT_LEVELS][2];
+        for (int level = 0; level < levels.length; level++) {
+            for (int i = 0; i < levels[level].length; i++) {
 
-        for (int i = 0; i < countLevels; i++) {
-            int question = Engine.randomIntValue();
-            String rightAnswer = Even.isEven(question) ? "yes" : "no";
-
-            Engine.askQuestion(Integer.toString(question));
-            String userAnswer = Engine.getAnswer();
-            if (!Engine.isRightAnswer(userAnswer, rightAnswer)) {
-                Engine.wrongAnswer(userAnswer, rightAnswer, userName);
-                return;
+                int question = Utils.randomIntValue();
+                String rightAnswer = Even.isEven(question) ? "yes" : "no";
+                levels[level][0] = Integer.toString(question);
+                levels[level][1] = rightAnswer;
             }
-            System.out.println("Correct!");
         }
-        Engine.winGame(userName);
+        Engine.startLevels(GAME_RULE, levels);
     }
 
     private static boolean isEven(int num) {

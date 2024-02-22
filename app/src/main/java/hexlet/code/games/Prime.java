@@ -5,24 +5,24 @@ import hexlet.code.Engine;
 public class Prime {
 
     private static final String GAME_RULE = "Answer 'yes' if given number is prime. Otherwise answer 'no'.";
+    private static final int COUNT_LEVELS = 3;
 
-    public static void start(int countLevels) {
-        String userName = Engine.greeting();
-        Engine.printGameRules(GAME_RULE);
 
-        for (int i = 0; i < countLevels; i++) {
-            int question = Engine.randomIntValue();
-            String rightAnswer = Prime.isPrimeNumber(question) ? "yes" : "no";
+    public static void startGame() {
 
-            Engine.askQuestion(Integer.toString(question));
-            String userAnswer = Engine.getAnswer();
-            if (!Engine.isRightAnswer(userAnswer, rightAnswer)) {
-                Engine.wrongAnswer(userAnswer, rightAnswer, userName);
-                return;
+        String[][] levels = new String[COUNT_LEVELS][2];
+        for (int level = 0; level < levels.length; level++) {
+            for (int i = 0; i < levels[level].length; i++) {
+
+                int question = Utils.randomIntValue();
+                String rightAnswer = Prime.isPrimeNumber(question) ? "yes" : "no";
+
+                levels[level][0] = Integer.toString(question);
+                levels[level][1] = rightAnswer;
             }
-            System.out.println("Correct!");
         }
-        Engine.winGame(userName);
+
+        Engine.startLevels(GAME_RULE, levels);
     }
     private static boolean isPrimeNumber(int num) {
         if (num == 1) {
