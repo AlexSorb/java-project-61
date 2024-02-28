@@ -6,22 +6,20 @@ public class Calc  {
     private static final String[] SYMBOLS_OPERATION = {"+", "-", "*"};
     private static final int MAX_NUMBER = 10;
     private static final int MIN_NUMBER = 1;
-    private static final int COUNT_LEVELS = 3;
+
 
     public static void startGame() {
 
-        String[][] result = new String[COUNT_LEVELS][2];
+        String[][] result = new String[Engine.COUNT_LEVELS][2];
         for (int level = 0; level < result.length; level++) {
-            for (int i = 0; i < result[level].length; i++) {
-                int leftArgument = Utils.randomIntValue(MIN_NUMBER, MAX_NUMBER);
-                int rightArgument = Utils.randomIntValue(MIN_NUMBER, MAX_NUMBER);
-                int numberOfOperation = Utils.randomIntValue(0, SYMBOLS_OPERATION.length);
+            int leftArgument = Utils.randomIntValue(MIN_NUMBER, MAX_NUMBER);
+            int rightArgument = Utils.randomIntValue(MIN_NUMBER, MAX_NUMBER);
+            int numberOfOperation = Utils.randomIntValue(0, SYMBOLS_OPERATION.length);
 
-                String question = leftArgument + " " + SYMBOLS_OPERATION[numberOfOperation] + " " + rightArgument;
-                int rightAnswer = Calc.getRightAnswer(leftArgument, rightArgument, numberOfOperation);
-                result[level][0] = question;
-                result[level][1] = Integer.toString(rightAnswer);
-            }
+            String question = leftArgument + " " + SYMBOLS_OPERATION[numberOfOperation] + " " + rightArgument;
+            int rightAnswer = Calc.getRightAnswer(leftArgument, rightArgument, numberOfOperation);
+            result[level][0] = question;
+            result[level][1] = Integer.toString(rightAnswer);
         }
 
         Engine.startLevels(GAME_RULE, result);

@@ -7,7 +7,7 @@ public class Utils {
     }
 
     public static int randomIntValue() {
-        final int left = 1;
+        final int left = 0;
         final int right = 26;
         return randomIntValue(left, right);
     }
